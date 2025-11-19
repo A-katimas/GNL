@@ -1,7 +1,7 @@
 # GNL
 Get NExt Line
 ![prout](https://media.tenor.com/2l4-h42qnmcAAAAj/toothless-dancing-toothless.gif)
-![hallo]([https://i.pinimg.com/originals/57/2f/36/572f36aa4e9677242c50c98734bc882c.gif](https://tenor.com/view/toothless-yoshi-cas-van-de-pol-how-to-train-your-dragon-gif-3895550527008532813))
+![hallo](https://media1.tenor.com/m/Ng_GkJbt6U0AAAAd/toothless-yoshi.gif)
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠟⠋⠻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠞⠛⠛⣿⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠃⠀⠀⠀⣿⣤⣤⣤⣤⣤⣤⣤⠾⠋⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀
