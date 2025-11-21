@@ -1,6 +1,6 @@
 NAME = get_next_line.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 SOURCE =	get_next_line.c \
 			get_next_line_utils.c

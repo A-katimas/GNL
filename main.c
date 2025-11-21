@@ -6,20 +6,26 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:50 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/20 14:32:21 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:15:07 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-void chat(unsigned int i , char* miou);
 
 int main() {
-    char buffer[BUFFER_SIZE];
+    char *buffer;
     int fd = open("test.txt", O_RDONLY);
-    read(fd, buffer, sizeof(buffer));
-	printf("%sla",buffer);
+	buffer = get_next_line(fd);
+	printf("%s",buffer);
+	while (buffer)
+	{
+		free(buffer);
+		buffer = get_next_line(fd);
+		printf("%s",buffer);
+	}
+	free(buffer);
     close(fd);
     return 0;
 }
