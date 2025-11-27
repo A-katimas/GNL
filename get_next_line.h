@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtardieu <jtardieu@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 19:14:22 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/27 00:06:44 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:43:48 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #endif
 
 char 	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strfree1join(void *s1, char const *s2);
 void	*ft_calloc( size_t nmemb, size_t size );
 size_t	ft_strlcpy(char	*dst, const char *src, size_t size);
 size_t	ft_strlcat( char *dst, const char *src, size_t size);

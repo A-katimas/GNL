@@ -6,25 +6,26 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:11:58 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/26 15:39:16 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:51:55 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strfree1join(void *s1, char const *s2)
 {
 	size_t	i;
 	char	*tab;
 
-	if (!s1 || !s2)
+	if (!(char const *)s1 || !s2)
 		return (NULL);
-	i = (ft_strlen(s1) + ft_strlen(s2)) + 1;
+	i = (ft_strlen((char const *)s1) + ft_strlen(s2)) + 1;
 	tab = ft_calloc(i, sizeof(char));
 	if (!tab)
 		return (NULL);
-	ft_strlcpy(tab, s1, i);
+	ft_strlcpy(tab, (char const *)s1, i);
 	ft_strlcat(tab, s2, i);
+	free(s1);
 	return (tab);
 }
 void	*ft_calloc( size_t nmemb, size_t size )
