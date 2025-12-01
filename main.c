@@ -6,7 +6,7 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:50 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/27 19:23:16 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:52:39 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 int main() {
     char *buffer;
-    int fd = open("test.txt", O_RDONLY);
+    int fd = open("bigline.txt", O_RDONLY);
 	printf("\t\t\tcommencement\n");
 	buffer = get_next_line(fd);
 
-	printf("ligne -%s-\n",buffer);
+	// printf("ligne -%s-\n",buffer);
 	while (buffer)
 	{
 		free(buffer);

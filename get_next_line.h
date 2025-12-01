@@ -6,7 +6,7 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:03:11 by vsyutkin          #+#    #+#             */
-/*   Updated: 2025/12/01 17:17:37 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:20:28 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 100000
 # endif
 
 # include <stdlib.h>

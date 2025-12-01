@@ -6,7 +6,7 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:02:23 by vsyutkin          #+#    #+#             */
-/*   Updated: 2025/12/01 17:17:07 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:48:43 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,34 @@ char	*get_next_line(int fd)
 		free(str);
 		return (NULL);
 	}
-	//ft_strlcat(&str_base[fd][ft_strlen(tampon)], tampon, ft_strlen(tampon) + 1);
 	ft_strlcpy(str_base[fd],tampon,ft_strlen(tampon) + 1);
 	free(tampon);
 	return (str);
 }
 
 
-char	*ft_need_line(int fd, char *buff)
+char	*ft_need_line(int fd, char *str_base_need)
 {
-	int		rd_bytes;
+	int		miss;
 	char	*str;
 
-	rd_bytes = 1;
-	if (buff)
-		str = calloc(ft_strlen(buff)+1, sizeof(char));
+	miss = 1;
+	if (str_base_need)
+		str = calloc(ft_strlen(str_base_need)+1, sizeof(char));
 	else
 		str = calloc(1,sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_strlcat(str, buff, ft_strlen(buff) + 1);
+	ft_strlcat(str, str_base_need, ft_strlen(str_base_need) + 1);
 	if (!str)
 		return (NULL);
-	while (!ft_strchr(str, '\n') && rd_bytes != 0)
+	while (!ft_strchr(str, '\n') && miss != 0)
 	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		miss = read(fd, str_base_need, BUFFER_SIZE);
+		if (miss == -1)
 			return (free(str), NULL);
-		str = ft_strjoin(str, buff);
+		str_base_need[miss] = '\0';
+		str = ft_strjoin(str, str_base_need);
 		if (!str || ft_strlen(str) == 0)
 			return (free(str), NULL);
 	}
