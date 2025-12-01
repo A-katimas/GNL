@@ -3,55 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtardieu <jtardieu@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 19:13:45 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/30 00:13:01 by jtardieu         ###   ########.fr       */
+/*   Created: 2023/11/01 19:02:23 by vsyutkin          #+#    #+#             */
+/*   Updated: 2025/12/01 17:17:07 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include <stdio.h>
-
-size_t	ft_strlen(const char *s);
-char	*ft_get_line(char *str);
-char	*needline(char *str_base, int fd);
-
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char str[1024][BUFFER_SIZE];
-	char		*tampon ;
-	ssize_t		miss ;
+	static char	str_base[1024][BUFFER_SIZE + 1];
+	char		*str;
+	char		*tampon;
 
-	tampon = str[fd];
-	tampon = ft_calloc(sizeof (char *),1);
-	if (!str[fd][0])
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	tampon = ft_need_line(fd, str_base[fd]);
+
+	str = ft_the_line(tampon);
+	if (!str)
 	{
-		miss = read(fd, str[fd],BUFFER_SIZE );
-			if (miss == 0)
-			return NULL;
+		free(tampon);
+		return (NULL);
 	}
-
-	tampon = needline(str[fd],fd);
-
-	char *str_return;
-	str_return = ft_get_line (tampon);
-
-	return(str_return);
+	tampon = ft_get_new_line(tampon);
+	if (!tampon)
+	{
+		free(str);
+		return (NULL);
+	}
+	//ft_strlcat(&str_base[fd][ft_strlen(tampon)], tampon, ft_strlen(tampon) + 1);
+	ft_strlcpy(str_base[fd],tampon,ft_strlen(tampon) + 1);
+	free(tampon);
+	return (str);
 }
 
-size_t	ft_strlen(const char *s)
+
+char	*ft_need_line(int fd, char *buff)
 {
-	size_t	i;
+	int		rd_bytes;
+	char	*str;
+
+	rd_bytes = 1;
+	if (buff)
+		str = calloc(ft_strlen(buff)+1, sizeof(char));
+	else
+		str = calloc(1,sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcat(str, buff, ft_strlen(buff) + 1);
+	if (!str)
+		return (NULL);
+	while (!ft_strchr(str, '\n') && rd_bytes != 0)
+	{
+		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		if (rd_bytes == -1)
+			return (free(str), NULL);
+		str = ft_strjoin(str, buff);
+		if (!str || ft_strlen(str) == 0)
+			return (free(str), NULL);
+	}
+	return (str);
+}
+char	*ft_get_new_line(char	*str)
+{
+	char	*str_return;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (s[i])
+	if (!str)
+		return (NULL);
+	while (str[i] && str[i] != '\n')
 		i++;
-	return (i);
+	if (str[i] == '\n')
+		i++;
+	str_return = calloc(((ft_strlen(str) - i) + 1) , sizeof(char));
+	if (!str_return)
+		return (NULL);
+	j = 0;
+	while (str[i])
+		str_return[j++] = str[i++];
+	free(str);
+	return (str_return);
 }
 
-char	*ft_get_line(char *str)
+char	*ft_the_line(char *str)
 {
 	char	*str_return;
 	int		i;
@@ -61,7 +100,7 @@ char	*ft_get_line(char *str)
 		return (str);
 	while (str[i] && str[i] != '\n')
 		i++;
-	str_return = malloc((sizeof(char) * i) + 2);
+	str_return = calloc(i + 2,sizeof(char));
 	if (!str_return)
 		return (NULL);
 	i = 0;
@@ -75,43 +114,29 @@ char	*ft_get_line(char *str)
 		str_return[i] = str[i];
 		i++;
 	}
-	str_return[i] = '\0';
 	return (str_return);
 }
-
-char	*needline(char *str_base, int fd)
+size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
 {
-	//char * buffer[BUFFER_SIZE];
-	char	*str_return;
-	ssize_t	miss;
-	int		i;
-	int		j;
+	size_t	i;
+	char	*src1;
 
 	i = 0;
-	j = 0;
-	str_return = ft_calloc(BUFFER_SIZE+1,sizeof(char *));
-	str_return = ft_strfree1join(str_return,str_base);
-
-	while (str_return[j] && str_return[j] != '\n')
+	src1 = (char *)src;
+	if (!dst && !src)
+		return (dst[i]);
+	while (src1[i])
+		i++;
+	if (size == 0)
+		return (i);
+	i = 0;
+	while (src1[i] && (i < size - 1))
 	{
-		j++;
-	}
-
-	if (j < BUFFER_SIZE)
-		ft_strlcpy(str_return,&str_return[j+1],BUFFER_SIZE);
-	while (str_base[i] && str_base[i] != '\n')
-	{
-		if (i == j-1 || i == BUFFER_SIZE-1)
-		{
-			i = -1;
-			miss = read(fd, str_base, BUFFER_SIZE );
-			str_return = ft_strfree1join(str_return, str_base);
-			if (miss == 0)
-				return 0;
-			j = miss ;
-		}
+		dst[i] = src1[i];
 		i++;
 	}
-
-	return (str_return);
+	dst[i] = '\0';
+	while (src1[i])
+		i++;
+	return (i);
 }

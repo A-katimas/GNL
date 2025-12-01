@@ -5,46 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 13:11:58 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/11/27 15:51:55 by jtardieu         ###   ########.fr       */
+/*   Created: 2023/11/01 19:03:07 by vsyutkin          #+#    #+#             */
+/*   Updated: 2025/12/01 13:34:46 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strfree1join(void *s1, char const *s2)
+char	*ft_strchr(const char *s, int c)
 {
+	char	cast_c;
+	int		i;
+
+	cast_c = (char)c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == cast_c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == cast_c)
+		return ((char *)&s[i]);
+	return (0);
+}
+
+char	*ft_strjoin(char *s1, char const *s2)
+{
+	char	*str;
 	size_t	i;
-	char	*tab;
+	size_t	j;
 
-	if (!(char const *)s1 || !s2)
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	i = (ft_strlen((char const *)s1) + ft_strlen(s2)) + 1;
-	tab = ft_calloc(i, sizeof(char));
-	if (!tab)
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
 		return (NULL);
-	ft_strlcpy(tab, (char const *)s1, i);
-	ft_strlcat(tab, s2, i);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
 	free(s1);
-	return (tab);
-}
-void	*ft_calloc( size_t nmemb, size_t size )
-{
-	size_t	i ;
-	void	*tab;
-
-	i = nmemb * size ;
-	if (size && (i / size != nmemb))
-		return (NULL);
-	tab = malloc(i);
-	if (!tab)
-		return (NULL);
-	else
-		ft_memset(tab, '\0', i);
-	return (tab);
+	return (str);
 }
 
-size_t	ft_strlcat( char *dst, const char *src, size_t size)
+
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	j;
@@ -62,41 +78,38 @@ size_t	ft_strlcat( char *dst, const char *src, size_t size)
 		dst[i + j] = '\0';
 	return (i + ft_strlen(src));
 }
-size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	char	*src1;
 
 	i = 0;
-	src1 = (char *)src;
-	if (!dst && !src)
-		return (dst[i]);
-	while (src1[i])
-		i++;
-	if (size == 0)
-		return (i);
-	i = 0;
-	while (src1[i] && (i < size - 1))
-	{
-		dst[i] = src1[i];
-		i++;
-	}
-	dst[i] = '\0';
-	while (src1[i])
+	while (s[i])
 		i++;
 	return (i);
 }
-void	*ft_memset(void *s, int c, size_t n)
+
+void	*ft_calloc( size_t nmemb, size_t size )
 {
 	size_t	i;
+	size_t	j;
+	void	*tab;
 	char	*la;
 
-	la = s;
-	i = 0;
-	while (i < n)
+	j = 0;
+	i = nmemb * size ;
+	if (size && (i / size != nmemb))
+		return (NULL);
+	tab = malloc(i);
+	if (!tab)
+		return (NULL);
+	else
 	{
-		la[i] = c;
-		i++;
+		la = tab;
+		while (j < i)
+		{
+			la[j] = '\0';
+			j++;
+		}
 	}
-	return (s);
+		return (tab);
 }
