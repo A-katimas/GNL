@@ -6,11 +6,11 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:03:07 by vsyutkin          #+#    #+#             */
-/*   Updated: 2025/12/02 17:12:03 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:15:12 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {

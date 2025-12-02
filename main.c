@@ -6,7 +6,7 @@
 /*   By: jtardieu <jtardieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:50 by jtardieu          #+#    #+#             */
-/*   Updated: 2025/12/01 17:52:39 by jtardieu         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:51:10 by jtardieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main() {
 	printf("\t\t\tcommencement\n");
 	buffer = get_next_line(fd);
 
-	// printf("ligne -%s-\n",buffer);
+	printf("ligne -%s-\n",buffer);
 	while (buffer)
 	{
 		free(buffer);
