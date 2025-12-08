@@ -57,7 +57,7 @@
  \__,_|\___||___/\___|_|  |_| .__/ \__|_|\___/|_| |_|
                             |_|  
 ```
-this project aims to be able to read 1 or more file line by line following a buffer given by the user \
+this project aims to be able to read 1 or more file line by line following a buffer given by the user
 
 # Instruction
 ```
@@ -69,13 +69,13 @@ this project aims to be able to read 1 or more file line by line following a buf
 ```
 **without makefile**
 
-to be able to use the Get_next_line project, you had to compile the ``get_next_line`` file. c and the get_next_line_utils file. c by putting them in obj format
+to be able to use the __Get_next_line project__, you had to compile the ``get_next_line`` file.c and the get_next_line_utils file.c by putting them in obj format
 
 then you must put these 2 files ".o" in an archive ".a"
 
 to finally compile this file ".a" with your hand ".c"
 
-typical order:
+*typical order:*
 
 ```
 cc -c get_next_line.c get_next_line_utils.c
@@ -88,10 +88,11 @@ cc main.c get_next_line.a
 **with makefile**
 
 to be able to use this project you must use the command make compile the entire project
-then it will not remain the case to use the file "get_next_line.a" generated and compiled with your "main.c"
-order to confirm:
+then it will not remain the case to use the file ``get_next_line.a`` generated and compiled with your ``main.c``
 
-``make ``: compilation of the project
+*order to confirm:*
+
+``make``: compilation of the project
 
 ``make re``: project execution and recompilation
 
@@ -99,7 +100,7 @@ order to confirm:
 
 ``make fclean``: overpressure of the generated file access
 
-typical type:
+*typical type:*
 
 ```
 make
