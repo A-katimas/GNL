@@ -67,7 +67,7 @@ this project aims to be able to read 1 or more file line by line following a buf
  | || | | \__ \ |_| | | (__| |_| |_| | (__| |_| | (_) | | | |
 |___|_| |_|___/\__|_|  \___|\__|\__,_|\___|\__|_|\___/|_| |_|
 ```
-***with makefile ***
+**without makefile**
 
 to be able to use the Get_next_line project, you had to compile the ``get_next_line`` file. c and the get_next_line_utils file. c by putting them in obj format
 
@@ -85,7 +85,8 @@ ar -rcs get_next_line.a get_next_line.o get_next_line_utils.o
 ```
 cc main.c get_next_line.a
 ```
-***without makefile***
+**with makefile**
+
 to be able to use this project you must use the command make compile the entire project
 then it will not remain the case to use the file "get_next_line.a" generated and compiled with your "main.c"
 order to confirm:
@@ -102,6 +103,8 @@ typical type:
 
 ```
 make
+```
+```
 cc main.c get_next_line. a
 ```
 
