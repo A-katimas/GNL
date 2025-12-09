@@ -45,9 +45,9 @@ char	*ft_need_line(int fd, char *str_base_need)
 
 	miss = 1;
 	if (str_base_need)
-		str = calloc(ft_strlen(str_base_need) + 1, sizeof(char));
+		str = ft_calloc(ft_strlen(str_base_need) + 1, sizeof(char));
 	else
-		str = calloc(1, sizeof(char));
+		str = ft_calloc(1, sizeof(char));
 	if (!str)
 		return (NULL);
 	ft_strlcat(str, str_base_need, ft_strlen(str_base_need) + 1);
@@ -79,7 +79,7 @@ char	*ft_get_new_line(char	*str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	str_return = calloc(((ft_strlen(str) - i) + 1), sizeof(char));
+	str_return = ft_calloc(((ft_strlen(str) - i) + 1), sizeof(char));
 	if (!str_return)
 		return (NULL);
 	j = 0;
@@ -99,7 +99,7 @@ char	*ft_the_line(char *str)
 		return (str);
 	while (str[i] && str[i] != '\n')
 		i++;
-	str_return = calloc(i + 2, sizeof(char));
+	str_return = ft_calloc(i + 2, sizeof(char));
 	if (!str_return)
 		return (NULL);
 	i = 0;
